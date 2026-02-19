@@ -2,6 +2,7 @@
 from modules.downloader_narou import NarouDownloader
 from modules.downloader_kakuyomu import KakuyomuDownloader
 import os
+import time
 
 def main(url):
     # サイト判別
@@ -25,8 +26,9 @@ def main(url):
     for i, ep in enumerate(episodes, 1):
         print(f"[{i}/{len(episodes)}] {ep['subtitle']}")
         sub, body = dl.get_episode_data(ep)
+        time.sleep(1.0)
         dl.save_episode(save_dir, i, sub, body)
-    
+        
     print(f"\n完了！フォルダ: {save_dir}")
     return metadata, save_dir
 
